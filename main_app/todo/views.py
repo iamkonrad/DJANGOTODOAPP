@@ -1,10 +1,9 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from .models import Task
 
-# Create your views here.
 
 def addTask(request):
-    task = request.POST['task']                                                                                         #from the button
+    task = request.POST['task']                                                                                         #from the add button
     Task.objects.create(task=task)                                                                                      #based on the models
     return redirect ('home')
 
@@ -32,3 +31,8 @@ def edit_task(request,pk):
             'get_task':get_task,
         }
         return render(request,'edit_task.html', context)
+
+def delete_task(request,pk):
+    task = get_object_or_404(Task,pk=pk)                                                                                #fetching the object from database if it exists
+    task.delete()                                                                                                       #deleting the object based on a pk
+    return redirect('home')
