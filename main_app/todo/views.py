@@ -20,7 +20,7 @@ def mark_as_undone(request, pk):
     return redirect ('home')
 
 def edit_task(request,pk):
-    get_task = get_object_or_404(Task, pk=pk)                                                                            #fetching the object from database if it exists
+    get_task = get_object_or_404(Task, pk=pk)                                                                           #fetching the object from database if it exists
     if request.method =='POST':
         new_task = request.POST['task']
         get_task.task = new_task
